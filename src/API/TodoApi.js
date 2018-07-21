@@ -1,23 +1,7 @@
-import {addTodo, changeCheck} from "../actions";
- const axios = require('axios');
  const todoApi = {
      todoObject:{
          todos:[],
          status:"all"
-     },
-     getHttp(){
-     axios.get('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo/1')
-       .then(function (response) {
-         // handle success
-         console.log(response);
-       })
-       .catch(function (error) {
-         // handle error
-         console.log(error);
-       })
-       .then(function () {
-         // always executed
-       });
      },
      filterTodos(){
          let todos = this.todoObject.todos;
@@ -33,19 +17,9 @@ import {addTodo, changeCheck} from "../actions";
              return {afeterHandleTodos,status}
          }
      },
-     addItem(item,dispatch){
-      this.todoObject.todos.push(item);
-     axios.post('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo', {
-         content: item.content,
-         isComplete: item.isComplete
-       })
-       .then(function (response) {
-         console.log(response);
-       })
-       .catch(function (error) {
-         console.log(error);
-       });
-       dispatch(addTodo(this.filterTodos()));
+     addItem(item){
+        this.todoObject.todos.push(item);
+        return this.filterTodos();
      },
      toggleActive(viewId){
          this.todoObject.todos.forEach(item=>{
