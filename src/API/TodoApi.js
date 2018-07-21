@@ -1,7 +1,22 @@
+ const axios = require('axios');
  const todoApi = {
      todoObject:{
          todos:[],
          status:"all"
+     },
+     getHttp(){
+     axios.get('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo/1')
+       .then(function (response) {
+         // handle success
+         console.log(response);
+       })
+       .catch(function (error) {
+         // handle error
+         console.log(error);
+       })
+       .then(function () {
+         // always executed
+       });
      },
      filterTodos(){
          let todos = this.todoObject.todos;
