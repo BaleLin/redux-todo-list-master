@@ -1,3 +1,4 @@
+import {addTodo, changeCheck} from "../actions";
  const axios = require('axios');
  const todoApi = {
      todoObject:{
@@ -32,9 +33,19 @@
              return {afeterHandleTodos,status}
          }
      },
-     addItem(item){
-        this.todoObject.todos.push(item);
-        return this.filterTodos();
+     addItem(item,dispatch){
+      this.todoObject.todos.push(item);
+     axios.post('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo', {
+         content: item.content,
+         isComplete: item.isComplete
+       })
+       .then(function (response) {
+         console.log(response);
+       })
+       .catch(function (error) {
+         console.log(error);
+       });
+       dispatch(addTodo(this.filterTodos()));
      },
      toggleActive(viewId){
          this.todoObject.todos.forEach(item=>{
