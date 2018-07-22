@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-
 export default class InputText extends React.Component {
     constructor() {
         super();

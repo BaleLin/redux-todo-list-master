@@ -1,3 +1,6 @@
+  import {addTodo, changeCheck} from "../actions";
+ const axios = require('axios');
+
  const todoApi = {
      todoObject:{
          todos:[],
@@ -17,9 +20,41 @@
              return {afeterHandleTodos,status}
          }
      },
-     addItem(item){
-        this.todoObject.todos.push(item);
-        return this.filterTodos();
+     updateServerDAta(){
+     let slef = this;
+     slef.todoObject.todos = [{id:1,content:"nihao",isComplete:true}]
+//        axios.get('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo')
+//          .then(function (response) {
+//            slef.todoObject.todos=response.data;
+//            console.log(slef.todoObject.todos);
+//            this.updateServerDAta();
+//             console.log(this.todoObject.todos);
+//          })
+//          .catch(function (error) {
+//            // handle error
+//            console.log(error);
+//          })
+//          .then(function () {
+//            // always executed
+//          });
+     },
+     addItem(item,dispatch){
+//       axios.post('http://5b530805d9b92700141c9abf.mockapi.io/apiv1/todo', {
+//         content: item.content,
+//         isComplete: item.isComplete
+//       })
+//       .then(function (response) {
+//        // console.log(response);
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+
+       // this.todoObject.todos.push(item);
+         this.updateServerDAta();
+         console.log("查询添加"+JSON.stringify(this.todoObject.todos));
+         dispatch(addTodo(this.filterTodos()));
+        ;
      },
      toggleActive(viewId){
          this.todoObject.todos.forEach(item=>{
